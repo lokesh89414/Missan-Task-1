@@ -1,0 +1,494 @@
+/* ============================================================
+   LeaveFlow – style.css
+   Design system → layout → components → states → responsive
+   ============================================================ */
+
+/* ── 1. Design Tokens ─────────────────────────────────────── */
+:root {
+  /* Brand palette */
+  --color-brand:        #2563eb;   /* primary blue */
+  --color-brand-dark:   #1d4ed8;
+  --color-brand-light:  #eff6ff;
+
+  /* Status colours */
+  --color-accepted:     #16a34a;
+  --color-accepted-bg:  #f0fdf4;
+  --color-accepted-bdr: #bbf7d0;
+
+  --color-rejected:     #dc2626;
+  --color-rejected-bg:  #fef2f2;
+  --color-rejected-bdr: #fecaca;
+
+  --color-emergency:    #d97706;
+  --color-emergency-bg: #fffbeb;
+  --color-emergency-bdr:#fde68a;
+
+  /* Neutrals */
+  --color-bg:           #f1f5f9;
+  --color-surface:      #ffffff;
+  --color-border:       #e2e8f0;
+  --color-text:         #1e293b;
+  --color-text-muted:   #64748b;
+  --color-error:        #dc2626;
+  --color-error-bg:     #fef2f2;
+
+  /* Typography */
+  --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-size-xs:   0.75rem;
+  --font-size-sm:   0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg:   1.125rem;
+  --font-size-xl:   1.25rem;
+  --font-size-2xl:  1.5rem;
+  --font-size-3xl:  1.875rem;
+
+  /* Spacing */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Shape */
+  --radius-sm:  0.375rem;
+  --radius-md:  0.625rem;
+  --radius-lg:  1rem;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg:  0 10px 25px rgba(0,0,0,0.10), 0 4px 10px rgba(0,0,0,0.06);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 220ms ease;
+}
+
+/* ── 2. Reset & Base ──────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── 3. Header ────────────────────────────────────────────── */
+.site-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.company-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+.header-divider {
+  width: 1px;
+  height: 36px;
+  background-color: var(--color-border);
+  flex-shrink: 0;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-name {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-brand);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.brand-tagline {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ── 4. Main Layout ───────────────────────────────────────── */
+.main-content {
+  flex: 1;
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── 5. Card ──────────────────────────────────────────────── */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-8);
+  border: 1px solid var(--color-border);
+}
+
+.card-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.card-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+/* ── 6. Form Sections ─────────────────────────────────────── */
+.form-section {
+  border: none;
+  padding: 0;
+  margin-bottom: var(--space-6);
+}
+
+.section-legend {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-brand);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
+  border-bottom: 2px solid var(--color-brand-light);
+  width: 100%;
+  display: block;
+}
+
+/* ── 7. Field Groups ──────────────────────────────────────── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.field-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Side-by-side row for balance + requested days */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.field-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.required {
+  color: var(--color-error);
+  margin-left: 2px;
+}
+
+/* ── 8. Inputs ────────────────────────────────────────────── */
+.field-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  -moz-appearance: textfield; /* hide spinners Firefox */
+}
+
+/* Hide number input spinners */
+.field-input[type="number"]::-webkit-inner-spin-button,
+.field-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.field-input:focus {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+}
+
+.field-input::placeholder {
+  color: #cbd5e1;
+}
+
+/* Error state on input */
+.field-input.input-error {
+  border-color: var(--color-error);
+  background-color: var(--color-error-bg);
+}
+
+.field-input.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.12);
+}
+
+/* Select specific */
+.field-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2364748b' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: var(--space-8);
+}
+
+/* ── 9. Inline Error Messages ─────────────────────────────── */
+.field-error {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  font-weight: 500;
+  min-height: 1rem; /* prevent layout shift */
+  display: block;
+}
+
+/* ── 10. Buttons ──────────────────────────────────────────── */
+.form-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+              transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background-color: var(--color-brand);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-brand-dark);
+  box-shadow: 0 4px 12px rgba(37,99,235,0.35);
+}
+
+.btn-secondary {
+  background-color: #f8fafc;
+  color: var(--color-text-muted);
+  border: 1.5px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background-color: #f1f5f9;
+  color: var(--color-text);
+}
+
+.btn-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ── 11. Result Card ──────────────────────────────────────── */
+.result-card {
+  border-width: 2px;
+  transition: border-color var(--transition-base);
+  /* hidden by default via [hidden] attribute in HTML */
+}
+
+/* Status-driven colour variants via data-status attribute */
+.result-card[data-status="accepted"] {
+  border-color: var(--color-accepted-bdr);
+  background-color: var(--color-accepted-bg);
+}
+
+.result-card[data-status="rejected"] {
+  border-color: var(--color-rejected-bdr);
+  background-color: var(--color-rejected-bg);
+}
+
+.result-card[data-status="emergency"] {
+  border-color: var(--color-emergency-bdr);
+  background-color: var(--color-emergency-bg);
+}
+
+/* Status bar (badge row) */
+.result-status-bar {
+  margin-bottom: var(--space-5);
+}
+
+.result-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 999px;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.result-badge.badge-accepted {
+  background-color: var(--color-accepted);
+  color: #ffffff;
+}
+
+.result-badge.badge-rejected {
+  background-color: var(--color-rejected);
+  color: #ffffff;
+}
+
+.result-badge.badge-emergency {
+  background-color: var(--color-emergency);
+  color: #ffffff;
+}
+
+/* Detail rows */
+.result-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  font-size: var(--font-size-sm);
+}
+
+.result-label {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.result-value {
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: right;
+}
+
+/* Reason block */
+.result-reason {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.result-reason-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-text-muted);
+}
+
+.result-reason-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ── 12. Footer ───────────────────────────────────────────── */
+.site-footer {
+  text-align: center;
+  padding: var(--space-5) var(--space-4);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+/* ── 13. Utility ──────────────────────────────────────────── */
+[hidden] {
+  display: none !important;
+}
+
+/* ── 14. Responsive ───────────────────────────────────────── */
+@media (max-width: 520px) {
+  .card {
+    padding: var(--space-5);
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .result-row {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .result-value {
+    text-align: left;
+  }
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LeaveFlow – Employee Leave Request Portal. Submit and track your leave requests simply and clearly." />
+  <title>LeaveFlow – Employee Leave Request Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <img
+          src="missan-logo-blue.png"
+          alt="Missan IT Solutions"
+          class="company-logo"
+        />
+        <div class="header-divider" aria-hidden="true"></div>
+        <div class="brand-text">
+          <span class="brand-name">LeaveFlow</span>
+          <span class="brand-tagline">Employee Leave Request Portal</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+    <div class="card form-card">
+
+      <!-- Form title -->
+      <h1 class="card-title">Submit a Leave Request</h1>
+      <p class="card-subtitle">Complete all fields below and click <strong>Submit Request</strong>.</p>
+
+      <form id="leaveForm" novalidate autocomplete="off">
+
+        <!-- ── SECTION: Employee Information ── -->
+        <fieldset class="form-section">
+          <legend class="section-legend">Employee Information</legend>
+
+          <div class="field-group">
+            <label for="employeeName" class="field-label">
+              Employee Name <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="employeeName"
+              name="employeeName"
+              class="field-input"
+              placeholder="e.g. Arun Kumar"
+              aria-required="true"
+              aria-describedby="employeeName-error"
+            />
+            <span id="employeeName-error" class="field-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="field-group">
+            <label for="employeeId" class="field-label">
+              Employee ID <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="employeeId"
+              name="employeeId"
+              class="field-input"
+              placeholder="e.g. EMP001"
+              aria-required="true"
+              aria-describedby="employeeId-error"
+            />
+            <span id="employeeId-error" class="field-error" role="alert" aria-live="polite"></span>
+          </div>
+        </fieldset>
+
+        <!-- ── SECTION: Leave Details ── -->
+        <fieldset class="form-section">
+          <legend class="section-legend">Leave Details</legend>
+
+          <div class="field-group">
+            <label for="leaveType" class="field-label">
+              Leave Type <span class="required" aria-hidden="true">*</span>
+            </label>
+            <select
+              id="leaveType"
+              name="leaveType"
+              class="field-input field-select"
+              aria-required="true"
+              aria-describedby="leaveType-error"
+            >
+              <option value="">— Select Leave Type —</option>
+              <option value="annual">Annual Leave</option>
+              <option value="sick">Sick Leave</option>
+              <option value="emergency">Emergency Leave</option>
+            </select>
+            <span id="leaveType-error" class="field-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label for="leaveBalance" class="field-label">
+                Available Leave Balance (days) <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="number"
+                id="leaveBalance"
+                name="leaveBalance"
+                class="field-input"
+                placeholder="e.g. 5"
+                min="0"
+                step="1"
+                aria-required="true"
+                aria-describedby="leaveBalance-error"
+              />
+              <span id="leaveBalance-error" class="field-error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="field-group">
+              <label for="requestedDays" class="field-label">
+                Number of Days Requested <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="number"
+                id="requestedDays"
+                name="requestedDays"
+                class="field-input"
+                placeholder="e.g. 3"
+                min="1"
+                step="1"
+                aria-required="true"
+                aria-describedby="requestedDays-error"
+              />
+              <span id="requestedDays-error" class="field-error" role="alert" aria-live="polite"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ── ACTIONS ── -->
+        <div class="form-actions">
+          <button type="submit" id="submitBtn" class="btn btn-primary">
+            <span class="btn-icon" aria-hidden="true">&#10003;</span>
+            Submit Request
+          </button>
+          <button type="button" id="resetBtn" class="btn btn-secondary">
+            <span class="btn-icon" aria-hidden="true">&#8635;</span>
+            Reset
+          </button>
+        </div>
+
+      </form>
+    </div><!-- /.form-card -->
+
+    <!-- ===== RESULT CARD (hidden until submission) ===== -->
+    <div id="resultCard" class="card result-card" aria-live="polite" hidden>
+
+      <!-- Status badge -->
+      <div class="result-status-bar">
+        <span id="resultBadge" class="result-badge"></span>
+      </div>
+
+      <!-- Summary table -->
+      <div class="result-details">
+        <div class="result-row">
+          <span class="result-label">Employee Name</span>
+          <span id="resultName" class="result-value"></span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">Employee ID</span>
+          <span id="resultId" class="result-value"></span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">Leave Type</span>
+          <span id="resultLeaveType" class="result-value"></span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">Available Balance</span>
+          <span id="resultBalance" class="result-value"></span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">Days Requested</span>
+          <span id="resultRequested" class="result-value"></span>
+        </div>
+      </div>
+
+      <!-- Reason explanation -->
+      <div class="result-reason">
+        <span class="result-reason-label">Reason</span>
+        <p id="resultReason" class="result-reason-text"></p>
+      </div>
+
+    </div><!-- /#resultCard -->
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <p>LeaveFlow &mdash; Employee Leave Request Portal &mdash; Frontend Assessment</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
